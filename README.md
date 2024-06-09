@@ -8,9 +8,9 @@
 > npm install
 
 ### 3. To run this application in the development server
-###### To start the frontend server -
+###### Open a terminal > start the frontend server -
 > npm run dev
-###### To start the backend server -
+###### Open a new terminal > Change the directory to 'backend' folder > start the backend server -
 > cd backend
 
 > npm run dev
