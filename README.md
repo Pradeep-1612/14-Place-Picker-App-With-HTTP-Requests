@@ -1,4 +1,10 @@
 # 14-Place-Picker-App-With-HTTP-Requests
+
+### Concepts covered in this application:
+1. Handling HTTP requests.
+2. Custom react hooks implementation.
+----
+   
 ### 1. To install dependencies for the frontend application
 > npm install
 
