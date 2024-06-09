@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState } from "react";
 
 import Places from "./components/Places.jsx";
 import Modal from "./components/Modal.jsx";
@@ -7,37 +7,43 @@ import logoImg from "./assets/logo.png";
 import AvailablePlaces from "./components/AvailablePlaces.jsx";
 import { fetchUserPlaces, updateUserPlaces } from "./http.js";
 import Error from "./components/Error.jsx";
-import { useEffect } from "react";
+import { useFetch } from "./hooks/useFetch.js";
 
 function App() {
   const selectedPlace = useRef();
-
-  const [userPlaces, setUserPlaces] = useState([]);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const [errorUpdatingPlaces, setErrorUpdatingPlaces] = useState();
 
-  const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState();
+  // const [userPlaces, setUserPlaces] = useState([]);
+  // const [isFetching, setIsFetching] = useState(false);
+  // const [error, setError] = useState();
 
-  useEffect(() => {
-    async function fetchPlaces() {
-      try {
-        setIsFetching(true);
-        const places = await fetchUserPlaces();
-        setUserPlaces(places);
-        setIsFetching(false);
-      } catch (error) {
-        setError({
-          message: error.message || "Failed to fetch your places.",
-        });
-        setIsFetching(false);
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchPlaces() {
+  //     try {
+  //       setIsFetching(true);
+  //       const places = await fetchUserPlaces();
+  //       setUserPlaces(places);
+  //       setIsFetching(false);
+  //     } catch (error) {
+  //       setError({
+  //         message: error.message || "Failed to fetch your places.",
+  //       });
+  //       setIsFetching(false);
+  //     }
+  //   }
 
-    fetchPlaces();
-  }, []);
+  //   fetchPlaces();
+  // }, []);
+
+  const {
+    data: userPlaces,
+    setData: setUserPlaces,
+    isFetching,
+    error,
+  } = useFetch(fetchUserPlaces, []);
 
   function handleStartRemovePlace(place) {
     setModalIsOpen(true);
